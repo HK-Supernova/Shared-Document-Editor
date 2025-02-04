@@ -9,12 +9,12 @@ A POC for secured web app for live collaboration on text documents.
    docker-compose build
    docker-compose up
     ```
-2. Open your browser at:
+2. Open your browser at:<br>
    `http://localhost` (will redirect automatically to https)
 
-3. Log in with one of the predefined users:
-    username, password
-    `test1, test1715`
+3. Log in with one of the predefined users:<br>
+    username, password<br>
+    `test1, test1715`<br>
     `test2, test1935`
 
 ## Highlights
