@@ -19,6 +19,6 @@ A POC for secured web app for live collaboration on text documents.
 
 ## Highlights
 * **Secured**: Traffic goes through HTTPS.
-* **Instant collaboration**: Edits appear in real time for other connected users - no “Save” button required.
+* **Instant collaboration**: Edits appear in real time for other connected users - no "Save" button required.
 * **Multi-session**: A single user can connect from multiple devices and still see live updates.
 * **Logging**: Every login and keystroke is recorded in the database, including timestamps and cursor positions.

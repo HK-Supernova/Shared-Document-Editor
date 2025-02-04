@@ -15,6 +15,6 @@ services:
   document_editor:
     build: .
     expose:
-      - "8000"       # We'll have the doc editor serve on 8000 internally
+      - "8000"
     volumes:
       - .:/app
