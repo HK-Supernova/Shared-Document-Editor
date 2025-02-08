@@ -24,6 +24,8 @@ from Server.helper import (
     DOCUMENT_ID,
 
     send_login_redirect_response_to_websocket,
+    encrypt_document_data,
+    decrypt_document_data,
 )
 
 db_lock = asyncio.Lock()
@@ -111,7 +113,11 @@ async def edit_document(websocket: WebSocket, token: str = Query(None)):
 
     await websocket.accept()
 
-    document_text = get_document_data(DOCUMENT_ID) or ""
+    document_text = ""
+    decrypted_document_data = get_document_data(DOCUMENT_ID) or ""
+    if decrypted_document_data:
+        document_text = decrypt_document_data(decrypted_document_data)
+
     await websocket.send_text(document_text)
 
     if username not in sessions:
@@ -135,8 +141,10 @@ async def edit_document(websocket: WebSocket, token: str = Query(None)):
             row = data.get("row", 0)
             col = data.get("col", 0)
 
+            encrypted_document_data = encrypt_document_data(document_text)
+
             async with db_lock:
-                update_document_data(document_text, username, DOCUMENT_ID)
+                update_document_data(encrypted_document_data, username, DOCUMENT_ID)
                 log_data_change(username, typed_char, row, col, DOCUMENT_ID)
 
             for user, websocket_set in sessions.items():
